@@ -47,41 +47,39 @@ update i to be a, c
 
 def improved():
 
-    for k in range(2): # need second pass 
-        for i in range(len(ranges)):
-            for j in range(len(ranges)):
-                # input()
-                if i == j:
-                    # dont compare the same ranges
-                    continue
-                if ranges[i] == [0,0] or ranges[j] == [0,0]:
-                    # placeholders
-                    continue
-                # print(ranges[i], ranges[j])
+    ranges.sort()
+    for i in range(len(ranges)):
+        for j in range(len(ranges)):
+            # input()
+            if i == j:
+                # dont compare the same ranges
+                continue
+            if ranges[i] == [0,0] or ranges[j] == [0,0]:
+                # placeholders
+                continue
+            # print(ranges[i], ranges[j])
 
-                a, b = ranges[i]
-                c, d = ranges[j]
+            a, b = ranges[i]
+            c, d = ranges[j]
 
-                merged_min = None
-                merged_max = None
+            merged_min = None
+            merged_max = None
 
-                if c <= a <= d:
-                    merged_min = c
-                if a <= c <= b:
-                    merged_min = a
-                
-                if c <= b <= d:
-                    merged_max = d
-                if a <= d <= b:
-                    merged_max = b
-                
+            if c <= a <= d:
+                merged_min = c
+            if a <= c <= b:
+                merged_min = a
+            
+            if c <= b <= d:
+                merged_max = d
+            if a <= d <= b:
+                merged_max = b
+            
 
-                if merged_max is not None and merged_min is not None:
-                    ranges[j] = [0,0]
-                    ranges[i] = [merged_min, merged_max]
-                    print('merge', [merged_min, merged_max])
-                
-
+            if merged_max is not None and merged_min is not None:
+                ranges[j] = [0,0]
+                ranges[i] = [merged_min, merged_max]
+                print('merge', [merged_min, merged_max])
                 
 
     ranges.sort()
