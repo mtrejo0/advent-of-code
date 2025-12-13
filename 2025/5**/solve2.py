@@ -93,7 +93,35 @@ def improved():
             total_ids += (b-a+1)
     return total_ids
 
-print(improved())
+# print(improved())
 
+# saw from leet code - nlogn
+def improved2(ranges):
+    ranges.sort()
+    merged = []
+    for interval in ranges:
+        # if the list of merged intervals is empty or if the current
+        # interval does not overlap with the previous, simply append it.
+        if not merged or merged[-1][1] < interval[0]:
+            merged.append(interval)
+        else:
+            # otherwise, there is overlap, so we merge the current and previous
+            # intervals.
+            merged[-1][1] = max(merged[-1][1], interval[1])
+
+    
+    ranges = merged
+                
+   
+
+    total_ids = 0
+    for a, b in ranges:
+        print(a, b)
+        if [a, b] != [0, 0]:
+            print(b-a+1)
+            total_ids += (b-a+1)
+    return total_ids
+
+print(improved2(ranges))
 
 # 342437184136857
